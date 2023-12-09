@@ -16,6 +16,7 @@ export default function LoginPage() {
       <h2 className='text-center'>Login</h2>
 
       <AuthForm handleSubmit={handleSubmit} />
+      {err && (<div className="error">{err}</div>)}
     </main>
   );
 }

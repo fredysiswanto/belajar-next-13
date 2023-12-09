@@ -14,17 +14,18 @@ export default function RegisterPage() {
     const { error } = await superbase.auth.signUp({
       email,
       password,
-      // options: {
-      //   emailRedirectTo: `${location.origin}/api/auth/callback`,
-      // },
+      options: {
+        emailRedirectTo: `${location.origin}/api/auth/callback`,
+      },
     });
     if (error) {
       setErr(error.message);
+      console.log(error);
     }
 
-    // if (!error) {
-    //   router.push('/verify');
-    // }
+    if (!error) {
+      router.push('/verify');
+    }
     setTimeout(() => {
       console.log('err', err);
     }, 2000);
@@ -35,6 +36,7 @@ export default function RegisterPage() {
     <main>
       <h2 className='text-center'>Register</h2>
       <AuthForm handleSubmit={handleSubmit} />
+      {err && (<div className="error">{err}</div>)}
     </main>
   );
 }
