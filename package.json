@@ -10,20 +10,28 @@
     "jsonser": "json-server --watch --port 4000 ./_data/db.json"
   },
   "dependencies": {
+    "@prisma/client": "^5.7.0",
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/auth-ui-react": "^0.4.6",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.39.0",
+    "googleapis": "^129.0.0",
     "next": "14.0.3",
+    "nodemailer": "^6.9.7",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.12.0"
   },
   "devDependencies": {
+    "@types/node": "^20.10.4",
+    "@types/react": "18.2.43",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "postcss": "^8",
-    "tailwindcss": "^3.3.0"
+    "prisma": "^5.7.0",
+    "tailwindcss": "^3.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }
