@@ -13,18 +13,19 @@ oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
 export async function GET() {
   const userId = `tester.fredy@gmail.com`;
-  const accessToken = await oAuth2Client.getAccessToken();
+  const { token } = await oAuth2Client.getAccessToken();
   const res = await fetch(
-    `https://gmail.googleapis.com/gmail/v1/users/${userId}/messages`,
+    `https://gmail.googleapis.com/gmail/v1/users/${userId}/messages?maxResults=5`,
     {
       headers: {
-        Authorization: `Bearer ${accessToken} `,
+        Authorization: `Bearer ${token} `,
         'Content-type': 'application/json',
       },
     }
   );
-  const data = await res.json();
-  console.log(data);
+
+  const data = await res.json().then((e) => console.log(e));
+  // console.log(data);
 
   return Response.json({ data });
 }
