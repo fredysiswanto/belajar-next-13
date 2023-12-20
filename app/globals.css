@@ -119,8 +119,18 @@ body {
   margin: 0 auto;
   padding: 2rem 0;
 }
+.email-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
 
 .repo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.email-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -158,6 +168,12 @@ body {
 }
 
 .repo-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  color: #999;
+}
+.email-details {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;

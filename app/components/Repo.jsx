@@ -1,4 +1,3 @@
-const { default: Link } = require('next/link');
 import { FaStar, FaCodeBranch, FaEye } from 'react-icons/fa';
 
 export default async function Repo({ name }) {

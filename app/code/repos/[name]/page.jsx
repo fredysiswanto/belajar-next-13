@@ -10,13 +10,12 @@ export default async function RepoPage({ params: { name } }) {
       <Link href={'/code/repos'} className='btn btn-back'>
         Back to Repositories
       </Link>
-      <Suspense>
+      {/* <Suspense>
         <Repo name={name}></Repo>
       </Suspense>
       <Suspense fallback={<div>Loading ...</div>}>
         <RepoDir name={name}></RepoDir>
-      </Suspense>
+      </Suspense> */}
     </div>
   );
 }
-``;
