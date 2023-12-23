@@ -29,7 +29,7 @@ async function ListEmail(id) {
 export async function GET() {
   const emailList = [];
   const res = await fetch(
-    `https://gmail.googleapis.com/gmail/v1/users/${userId}/messages?maxResults=5`,
+    `https://gmail.googleapis.com/gmail/v1/users/${userId}/messages?maxResults=5&labelIds=Label_1763624457455248516`,
     {
       headers: {
         Authorization: `Bearer ${token} `,

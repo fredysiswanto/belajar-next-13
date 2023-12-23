@@ -24,35 +24,28 @@ async function DetailEmail(id) {
     }
   );
 
-  const data = await res.json();
-  // const buffer = await res.json();
-  // const typeResponse = buffer.payload.parts.find(
-  //   (part) => part.mimeType === 'text/plain'
-  // );
+  const buffer = await res.json();
+  raw = buffer.payload.parts.find((part) => part.mimeType === 'text/plain').body
+    .data;
+  otp = findOtp(raw);
 
-  // console.log(typeResponse);
-  // if (typeResponse == 'text/plain') {
-  //   raw = buffer.payload.parts.find((part) => part.mimeType === 'text/plain');
-  //   otp = await findOtp(raw).body.data;
-  // }
-
-  // const data = {
-  //   idEmail: id,
-  //   date: buffer.payload.headers.find((header) => header.name === 'Date').value,
-  //   to: buffer.payload.headers.find((header) => header.name === 'Delivered-To')
-  //     .value,
-  //   from: buffer.payload.headers.find((header) => header.name === 'From').value,
-  //   subject: buffer.payload.headers.find((header) => header.name === 'Subject')
-  //     .value,
-  //   otp: otp ? otp : null,
-  //   body: Base64.decode(raw),
-  // };
+  const data = {
+    idEmail: id,
+    date: buffer.payload.headers.find((header) => header.name === 'Date').value,
+    to: buffer.payload.headers.find((header) => header.name === 'Delivered-To')
+      .value,
+    from: buffer.payload.headers.find((header) => header.name === 'From').value,
+    subject: buffer.payload.headers.find((header) => header.name === 'Subject')
+      .value,
+    otp: otp ? otp : null,
+    body: Base64.decode(raw),
+  };
   return data;
 }
 
-export async function GET(request, { params }) {
-  const id = params.id;
-  const data = await DetailEmail(id);
-  // console.log(data);
-  return Response.json({ data: data });
+export async function GET(request, params) {
+  // const id = params.id;
+  // const data = await DetailEmail(id);
+  console.log(params);
+  return Response.json({ data: '' });
 }
