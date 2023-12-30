@@ -10,11 +10,14 @@
     "jsonser": "json-server --watch --port 4000 ./_data/db.json"
   },
   "dependencies": {
+    "@google-cloud/local-auth": "^3.0.0",
+    "@googleapis/gmail": "^7.0.0",
     "@prisma/client": "^5.7.0",
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/auth-ui-react": "^0.4.6",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.39.0",
+    "gapi": "^0.0.3",
     "googleapis": "^129.0.0",
     "js-base64": "^3.7.5",
     "next": "^14.0.4",

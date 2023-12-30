@@ -1,11 +1,10 @@
 // 'use client';
 import Link from 'next/link';
-import { FaStar, FaCodeBranch, FaEye } from 'react-icons/fa';
+import { Suspense } from 'react';
 
 async function fetchEmails() {
   const response = await fetch(`http://localhost:3000/api/mails`);
   const data = await response.json();
-  // console.log(repos);
   return data;
 }
 export default async function EmailsPage() {

@@ -1,7 +1,7 @@
 import { Base64 } from 'js-base64';
 
 function findContentEmail(detailsEmail, idEmail) {
-  data = {};
+  const data = {};
   if (idEmail) {
     data.idEmail = idEmail;
     data.date = detailsEmail.payload.headers.find(

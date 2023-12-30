@@ -7,7 +7,7 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
-const userId = `tester.fredy@gmail.com`;
+const userId = `${process.env.EMAIL}`;
 
 const { token } = await oAuth2Client.getAccessToken();
 async function ListEmail(id) {
@@ -26,7 +26,9 @@ async function ListEmail(id) {
   return data;
 }
 
-export async function GET() {
+export async function GET(request) {
+  const searchParams = request.nextUrl.searchParams;
+  const query = searchParams.get('latest');
   const emailList = [];
   const res = await fetch(
     `https://gmail.googleapis.com/gmail/v1/users/${userId}/messages?maxResults=5&labelIds=Label_1763624457455248516`,
@@ -54,5 +56,8 @@ export async function GET() {
   });
 
   await Promise.all(promises);
+  emailList.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  console.log(query);
   return Response.json({ data: emailList });
 }

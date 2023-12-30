@@ -1,6 +1,7 @@
-import Repo from '@/app/components/Repo';
-import RepoDir from '@/app/components/RepoDir';
-import Loading from '@/app/loading';
+import Repo from '../../../components/Repo';
+
+import RepoDir from '../../../components/RepoDir';
+import Loading from '../../../loading';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -10,12 +11,12 @@ export default async function RepoPage({ params: { name } }) {
       <Link href={'/code/repos'} className='btn btn-back'>
         Back to Repositories
       </Link>
-      {/* <Suspense>
+      <Suspense>
         <Repo name={name}></Repo>
       </Suspense>
       <Suspense fallback={<div>Loading ...</div>}>
         <RepoDir name={name}></RepoDir>
-      </Suspense> */}
+      </Suspense>
     </div>
   );
 }

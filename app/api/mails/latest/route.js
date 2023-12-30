@@ -1,5 +1,4 @@
 import { google } from 'googleapis';
-import { Base64 } from 'js-base64';
 import { findOtp } from './../../../(utils)/helper';
 
 const oAuth2Client = new google.auth.OAuth2(
@@ -10,8 +9,7 @@ const oAuth2Client = new google.auth.OAuth2(
 
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 const userId = `${process.env.EMAIL}`;
-let raw = '';
-let otp = '';
+
 const { token } = await oAuth2Client.getAccessToken();
 async function DetailEmail(id) {
   const res = await fetch(
@@ -31,30 +29,32 @@ async function DetailEmail(id) {
   const raw = plainTextPart.body.data;
 
   const otp = findOtp(raw);
-  const body = Base64.decode(raw);
 
   const data = {
-    idEmail: id,
     date: payload.headers.find((header) => header.name === 'Date').value,
-    to: payload.headers.find((header) => header.name === 'Delivered-To').value,
-    from: payload.headers.find((header) => header.name === 'From').value,
-    subject: payload.headers.find((header) => header.name === 'Subject').value,
     otp,
-    body,
   };
 
   return data;
 }
 
-export async function GET(request, { params }) {
-  const id = params.id;
+export async function GET(request) {
   const searchParams = request.nextUrl.searchParams;
-  const query = searchParams.get('otp');
-  const data = await DetailEmail(id);
+  const query = searchParams.get('latest');
+  const emailList = [];
+  const res = await fetch(
+    `https://gmail.googleapis.com/gmail/v1/users/${userId}/messages?maxResults=1&labelIds=Label_1763624457455248516`,
+    {
+      headers: {
+        Authorization: `Bearer ${token} `,
+        'Content-type': 'application/json',
+      },
+    }
+  );
+  const { messages } = await res.json();
+  const emailId = messages[0].id;
 
-  if (query === 'true') {
-    return Response.json({ data: { otp: data.otp } });
-  } else {
-    return Response.json({ data: data });
-  }
+  const data = await DetailEmail(emailId);
+  // await Promise.all(promises);
+  return Response.json({ data: data });
 }
