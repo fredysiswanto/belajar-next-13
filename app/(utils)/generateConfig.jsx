@@ -9,4 +9,4 @@ const generateConfig = (url, accessToken) => {
   };
 };
 
-export default { generateConfig };
+export default generateConfig;

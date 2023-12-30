@@ -9,8 +9,11 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'Traversy Media',
-  description: 'Web development tutorials and courses',
+  icons: {
+    icon: './assets/images/logo_kotak.svg',
+  },
+  title: 'Panduan QA',
+  description: 'Tools untuk membantu proses testing',
   keywords:
     'web development, web design, javascript, react, node, angular, vue, html, css',
 };
@@ -19,7 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={poppins.className}>
-       <Header></Header>
+        <Header></Header>
         <main className='container'>{children}</main>
       </body>
     </html>

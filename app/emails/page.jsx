@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 
 async function fetchEmails() {
-  const response = await fetch(`http://localhost:3000/api/mails`);
+  const response = await fetch(`${process.env.BASE_URL}/api/mails`);
   const data = await response.json();
   return data;
 }

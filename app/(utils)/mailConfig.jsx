@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 // require('dotenv').config();
 
 const auth = {
